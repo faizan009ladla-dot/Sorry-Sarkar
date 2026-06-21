@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sorry Sarkar ❤️</title>
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins', sans-serif;
+}
+
+body{
+height:100vh;
+overflow:hidden;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(-45deg,#ff9a9e,#fad0c4,#fbc2eb,#a18cd1);
+background-size:400% 400%;
+animation:gradientBG 10s ease infinite;
+}
+
+@keyframes gradientBG{
+0%{background-position:0% 50%}
+50%{background-position:100% 50%}
+100%{background-position:0% 50%}
+}
+
+/* glass card */
+.card{
+width:90%;
+max-width:420px;
+padding:25px;
+text-align:center;
+background:rgba(255,255,255,0.2);
+backdrop-filter:blur(15px);
+border-radius:20px;
+box-shadow:0 8px 32px rgba(0,0,0,0.2);
+color:white;
+}
+
+h1{
+font-size:22px;
+margin-bottom:10px;
+}
+
+.btn{
+padding:12px 20px;
+margin:10px;
+border:none;
+border-radius:12px;
+font-size:16px;
+cursor:pointer;
+transition:0.3s;
+}
+
+#enter{
+background:#ffffff;
+color:#333;
+font-weight:600;
+}
+
+#yes{
+background:#00c853;
+color:white;
+font-size:16px;
+}
+
+#no{
+background:#ff1744;
+color:white;
+position:relative;
+}
+
+/* main text */
+#main{
+display:none;
+}
+
+.bigText{
+font-size:32px;
+font-weight:800;
+margin-top:15px;
+animation:pop 1s ease;
+}
+
+@keyframes pop{
+from{transform:scale(0.5);opacity:0}
+to{transform:scale(1);opacity:1}
+}
+
+.subText{
+font-size:14px;
+margin-top:10px;
+opacity:0.9;
+line-height:1.5;
+}
+
+/* floating hearts */
+.heart{
+position:absolute;
+bottom:-20px;
+color:rgba(255,255,255,0.8);
+font-size:20px;
+animation:floatUp 6s linear infinite;
+}
+
+@keyframes floatUp{
+0%{transform:translateY(0) scale(1);opacity:1}
+100%{transform:translateY(-110vh) scale(1.5);opacity:0}
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+<div id="start">
+<h1>Assalamualaikum ❤️</h1>
+<button class="btn" id="enter" onclick="openSite()">Walaikum Assalam</button>
+</div>
+
+<div id="main">
+<div class="bigText">Sorry Sarkar ❤️</div>
+
+<div class="subText">
+Main dil se maafi chahta hoon...<br>
+Agar koi galti ho gayi ho to please mujhe maaf kar do 🙏<br>
+Tum meri life ka sab se important hissa ho 💖
+</div>
+
+<h3 style="margin-top:15px;">Accept my Sorry?</h3>
+
+<button class="btn" id="yes" onclick="yes()">Yes 💚</button>
+<button class="btn" id="no" onclick="no()">No 💔</button>
+</div>
+
+</div>
+
+<script>
+
+let yesBtn = document.getElementById("yes");
+let noBtn = document.getElementById("no");
+let size = 16;
+
+function openSite(){
+document.getElementById("start").style.display="none";
+document.getElementById("main").style.display="block";
+createHearts();
+}
+
+/* YES CLICK */
+function yes(){
+document.body.innerHTML = `
+<div style="height:100vh;display:flex;justify-content:center;align-items:center;
+flex-direction:column;background:linear-gradient(135deg,#43e97b,#38f9d7);color:white;text-align:center;">
+<h1 style="font-size:40px;">Thank You Sarkar ❤️</h1>
+<p style="font-size:18px;margin-top:10px;">Tumne mujhe maaf kar diya 💖</p>
+</div>`;
+}
+
+/* NO CLICK → YES grows */
+function no(){
+size += 8;
+yesBtn.style.fontSize = size + "px";
+yesBtn.style.padding = (size/2) + "px 25px";
+
+let x = Math.random()*100;
+let y = Math.random()*100;
+noBtn.style.transform = `translate(${x}px,${y}px)`;
+}
+
+/* floating hearts */
+function createHearts(){
+setInterval(()=>{
+let h = document.createElement("div");
+h.classList.add("heart");
+h.innerHTML = "❤️";
+h.style.left = Math.random()*100 + "vw";
+h.style.fontSize = (10 + Math.random()*20) + "px";
+h.style.animationDuration = (3 + Math.random()*4) + "s";
+document.body.appendChild(h);
+
+setTimeout(()=>{h.remove()},7000);
+},300);
+}
+
+</script>
+
+</body>
+</html>
